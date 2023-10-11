@@ -110,6 +110,24 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
 
+        public IActionResult Details(int id)
+        {
+
+            Photo? foundedPhoto = _myDatabase.Photos.Where(photo => photo.Id == id).Include(Photo => Photo.categories).FirstOrDefault();
+
+            if (foundedPhoto == null)
+            {
+                return NotFound($"Photo with id: {id} not founded");
+            }
+            else
+            {
+                return View("Details", foundedPhoto);
+            }
+
+        }
+
+
+
 
 
     }

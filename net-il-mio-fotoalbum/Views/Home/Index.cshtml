@@ -2,4 +2,108 @@
     Layout = "_CustomLayout";
 }
 
-<h1>This is Home Index Page</h1>
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-12">
+            <h1 class="title text-center">PHOTO API VIEW PAGE</h1>
+            <div>
+                <input id="js_search_box" type="text" class="form-control my-3" placeholder="Searching photos...">
+            </div>
+        </div>
+    </div>
+
+
+    <div id="loading-spinner" class="row">
+        <div class="col-12">
+            <div class="spinner-border" role="status">
+            </div>
+            <span>SEARCHING PHOTOS</span>
+        </div>
+    </div>
+
+
+    <div id="row-no-photos" class="row d-none">
+        <div class="col-12">
+            No photos founded!
+        </div>
+    </div>
+
+    <div id="list-of-photos" class="row d-none">
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        loadPhotos();
+
+        document.getElementById("js_search_box").addEventListener('keyup', searchPhotos);
+
+        function searchPhotos() {
+            let searchString = document.getElementById("js_search_box").value;
+
+            loadPhotos(searchString);
+        }
+
+
+        
+
+        function loadPhotos(searchParam) {
+            axios.get('/api/PhotosApi/GetPhotosByTitle', {
+                params: {
+                    Title: searchParam
+
+                }
+            }).then((res) => {
+
+                let divNoPhoto = document.getElementById("div-no-photo");
+                let loadingSpinnerElement = document.getElementById("loading-spinner");
+                let listOfPhotosElement = document.getElementById("list-of-photos");
+
+                if (res.data.length == 0) {
+
+                    divNoPhoto.classList.remove("d-none");
+                    loadingSpinnerElement.classList.add("d-none");
+
+                } else {
+                    loadingSpinnerElement.classList.add("d-none");
+                    listOfPhotosElement.classList.remove("d-none");
+
+                    listOfPhotosElement.innerHTML = "";
+
+                    res.data.forEach(photo => {
+
+
+                        listOfPhotosElement.innerHTML +=
+                            `
+                                    <div class="col-12 col-md-4 p-2" id="${photo.id}">
+
+                                        <div class="card text-center ">
+
+                                            <img src="${photo.image}" class="card-img-top" alt="Immagine ${photo.id}">
+                                            <div id="card_` + photo.id + `" class="card-body">
+                                               <h5 class="card-title">${photo.title}</h5>
+                                               <p class="card-text">${photo.description}</p>
+                                               <p class="card-text">${photo.category}</p>
+                                             
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    `;
+
+                 });
+                }
+
+            })
+        }
+
+ </script>
+
+}

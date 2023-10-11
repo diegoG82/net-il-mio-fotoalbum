@@ -126,7 +126,28 @@ namespace net_il_mio_fotoalbum.Controllers
 
         }
 
+        //Delete
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+
+            Photo? photoToDelete = _myDatabase.Photos.Where(pizza => pizza.Id == id).FirstOrDefault();
+
+            if (photoToDelete != null)
+            {
+                _myDatabase.Photos.Remove(photoToDelete);
+                _myDatabase.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Error");
+            }
+
+        }
 
 
 

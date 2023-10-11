@@ -1,0 +1,53 @@
+﻿﻿@{
+    Layout = "_CustomLayout";
+}
+
+@model PhotoFormModel
+
+<h1 class="title mt-4 w-50 text-center">UPDATE PHOTO</h1>
+
+<div class="container detailpizza text-center mt-4 mb-4">
+
+    <form asp-controller="Photo" asp-action="Update" asp-route-id="@Model.Photo?.Id" method="post" class="text-center">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Photo.Id" />
+        <div class="mt-4 mb-4 w-50">
+            <strong>Photo Title:</strong>
+            <input type="text" class="form-control" asp-for="Photo.Title">
+            <span asp-validation-for="Photo.Title" class="text-white"></span>
+        </div>
+
+
+        <div class="mt-4 mb-4 w-50 ">
+            <strong>Photo description:</strong>
+            <input type="text" class="form-control" asp-for="Photo.Description">
+            <span asp-validation-for="Photo.Description" class="text-white"></span>
+        </div>
+
+        <div class="mt-4 mb-4 w-50">
+            <strong>Categories:</strong>
+            <select asp-for="SelectedCategoriesId"
+                    multiple="multiple"
+                    size="5"
+                    class="form-control mb-2 mr-sm-2 ml-sm-3 leftList"
+                    asp-items="@Model.Categories">
+            </select>
+        </div>
+
+
+
+        <div class="mt-4 mb-4 w-50">
+            <strong>PIZZA'S URL:</strong>
+            <input type="text" class="form-control" asp-for="Photo.Image">
+            <span asp-validation-for="Photo.Image" class="text-white"></span>
+        </div>
+
+   
+
+
+       
+        <button type="submit" class="btn btn-danger mt-4 mb-2">Update!</button>
+    </form>
+
+
+</div>

@@ -126,6 +126,133 @@ namespace net_il_mio_fotoalbum.Controllers
 
         }
 
+
+        //Update Get
+
+ 
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+
+            Photo? photoToEdit = _myDatabase.Photos.Where(photo => photo.Id == id).Include(photo => photo.categories).FirstOrDefault();
+
+            if (photoToEdit == null)
+            {
+                return View("Error");
+            }
+
+            else
+            {
+             
+
+                List<Category> categorydb = _myDatabase.Categories.ToList();
+
+                List<SelectListItem> allCategoriesSelectList = new List<SelectListItem>();
+
+                foreach (Category category in categorydb)
+                {
+                    allCategoriesSelectList.Add(new SelectListItem
+                    {
+                        Value = category.Id.ToString(),
+                        Text = category.Name,
+                        Selected = photoToEdit.categories.Any(c => c.Id == category.Id)
+                    });
+                }
+
+
+                PhotoFormModel model
+                     = new PhotoFormModel { Photo = photoToEdit, Categories = allCategoriesSelectList };
+
+                return View("Update", model);
+            }
+
+        }
+
+     
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(int id, PhotoFormModel data)
+        {
+            if (!ModelState.IsValid)
+            {
+                
+
+                List<Category> categorydb = _myDatabase.Categories.ToList();
+                List<SelectListItem> allCategoriesSelectList = new List<SelectListItem>();
+
+                foreach (Category category in categorydb)
+                {
+                    allCategoriesSelectList.Add(new SelectListItem
+                    {
+                        Value = category.Id.ToString(),
+                        Text = category.Name,
+
+                    });
+                }
+
+                data.Categories = allCategoriesSelectList;
+
+                return View("Update", data);
+            }
+
+
+
+            Photo? photoToUpdate = _myDatabase.Photos.Where(Photo => Photo.Id == id).Include(photo => photo.categories).FirstOrDefault();
+
+            if (photoToUpdate != null)
+            {
+                photoToUpdate.categories.Clear();
+
+                photoToUpdate.Title = data.Photo.Title;
+                photoToUpdate.Description = data.Photo.Description;
+                photoToUpdate.Image = data.Photo.Image;
+             
+
+                if (data.SelectedCategoriesId != null)
+                {
+                    foreach (string catSelectedId in data.SelectedCategoriesId)
+                    {
+                        int intcatSelectedId = int.Parse(catSelectedId);
+
+                        Category? catInDb = _myDatabase.Categories.Where(tag => tag.Id == intcatSelectedId).FirstOrDefault();
+
+                        if (catInDb != null)
+                        {
+                            photoToUpdate.categories.Add(catInDb);
+                        }
+                    }
+                }
+                _myDatabase.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return NotFound("No photo to modify");
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //Delete
 
         [HttpPost]

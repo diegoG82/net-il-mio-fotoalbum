@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "_CustomLayout";
+}
+
+@model List<Photo>
+
+
+
+        @if (Model.Count() == 0)
+        {
+            <h3>Non ci sono articoli da mostrare</h3>
+        }
+
+        else{
+
+
+       <div class="title"> <h1 class="text-center mt-2 mb-4">WELCOME TO PHOTO ADMIN PAGE</h1></div>
+
+
+    <div class=" text-center mt-4 mb-4 W">
+        <a class=" btn btn-success " href="@Url.Action("Create", "Photo")">Create new Photo</a>
+    </div>
+   
+        <main>
+
+            <div class="container mt-4 mb-4  ">
+            <div class="row mt-2 mb-2">
+                <div class="col-12">
+
+                    <table class="table">
+                            <thead>
+                                    <tr>
+
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Photo</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Actions</th>
+                                    
+                                    </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (Photo photo in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@photo.Id</th>
+                                        <td><img src="@photo.Image" alt= "image not found" /></td>
+                                        <td> @photo.Title</td>
+                                        <td> @photo.Description</td>
+
+                                        <td>
+                                        @if (photo.categories?.Count > 0)
+                                        {
+                                            @string.Join(", ", photo.categories.Select(i => i.Name))
+                                        }
+                                        else
+                                        {
+                                            <span>No categories!</span>
+                                        }
+                                        </td>
+                                
+                                    </tr>
+                                }
+                        
+                            </tbody>
+
+                     </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+     }                               

@@ -23,6 +23,7 @@ namespace net_il_mio_fotoalbum.Models
 
         //Many to many relation with categories
         public List<Category>? categories { get; set; }
+     
 
         //Empty construct
         public Photo() { }

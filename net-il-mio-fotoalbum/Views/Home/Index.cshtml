@@ -2,6 +2,8 @@
     Layout = "_CustomLayout";
 }
 
+
+
 <div class="container">
 
 
@@ -34,6 +36,26 @@
     </div>
 
 </div>
+
+<div class=" container mt-4">
+
+    <h2>CONTACT US:</h2>
+
+    <form id="messageForm">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" name="message"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary mt-4 mb-4" onclick="sendMessage()">SEND</button>
+    </form>
+
+</div>
+   
+
 
 
 @section Scripts {
@@ -83,7 +105,7 @@
                             `
                                     <div class="col-12 col-md-4 p-2" id="${photo.id}">
 
-                                        <div class="card text-center ">
+                                        <div class="card photocard text-center ">
 
                                             <img src="${photo.imageSrc}" class="card-img-top" alt="Immagine ${photo.id}">
                                             <div id="card_` + photo.id + `" class="card-body">
@@ -105,6 +127,38 @@
             })
         }
 
- </script>
+
+        function sendMessage() {
+            let email = document.getElementById('email').value;
+            let message = document.getElementById('message').value;
+
+            if (!email || !message) {
+                alert('Insert Email and message');
+                return;
+            }
+
+            let apiUrl = `/api/MessageApi/StoreMessage`;
+
+            const jsonData = {
+                email: email,
+               text: message,
+            };
+
+            axios.post(apiUrl, jsonData)
+                .then(function (response) {
+                    console.log(response.data);
+                    alert('Message send with success!');
+
+                    document.getElementById('email').value = '';
+                    document.getElementById('message').value = '';
+                })
+                .catch(function (error) {
+                    alert('Error! Message not delivered');
+                    console.error(error);
+                });
+        }
+
+
+</script>
 
 }

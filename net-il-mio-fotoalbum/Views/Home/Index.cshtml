@@ -89,8 +89,9 @@
                                             <div id="card_` + photo.id + `" class="card-body">
                                                <h5 class="card-title">${photo.title}</h5>
                                                <p class="card-text">${photo.description}</p>
-                                               <p class="card-text">${photo.category}</p>
-                                             
+                                               <p class="card-text">
+                                                 ${photo.categories.map(category => category.name).join(", ")}
+                                               </p>
 
                                             </div>
                                         </div>

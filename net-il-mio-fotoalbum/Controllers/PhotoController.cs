@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 using net_il_mio_fotoalbum.Database;
 using net_il_mio_fotoalbum.Models;
 
@@ -101,7 +102,7 @@ namespace net_il_mio_fotoalbum.Controllers
                 }
             }
 
-
+            this.SetImageFileFromFormFile(data);
             _myDatabase.Photos.Add(data.Photo);
             _myDatabase.SaveChanges();
 
@@ -205,7 +206,7 @@ namespace net_il_mio_fotoalbum.Controllers
 
                 photoToUpdate.Title = data.Photo.Title;
                 photoToUpdate.Description = data.Photo.Description;
-                photoToUpdate.Image = data.Photo.Image;
+                photoToUpdate.ImageUrl = data.Photo.ImageUrl;
              
 
                 if (data.SelectedCategoriesId != null)
@@ -222,6 +223,13 @@ namespace net_il_mio_fotoalbum.Controllers
                         }
                     }
                 }
+
+                if(data.ImageFormFile != null)
+                {
+                    MemoryStream stream = new MemoryStream();
+                    data.ImageFormFile.CopyTo(stream);
+                    photoToUpdate.ImageFile = stream.ToArray();
+                }
                 _myDatabase.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -232,26 +240,6 @@ namespace net_il_mio_fotoalbum.Controllers
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //Delete
 
@@ -273,6 +261,20 @@ namespace net_il_mio_fotoalbum.Controllers
             {
                 return View("Error");
             }
+
+        }
+
+      
+        private void SetImageFileFromFormFile(PhotoFormModel formData)
+        {
+            if (formData.ImageFormFile == null)
+            {
+               return;
+            }
+
+            MemoryStream stream = new MemoryStream();
+           formData.ImageFormFile.CopyTo(stream);
+            formData.Photo.ImageFile = stream.ToArray();
 
         }
 

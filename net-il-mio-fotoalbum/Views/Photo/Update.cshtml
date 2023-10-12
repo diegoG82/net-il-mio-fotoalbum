@@ -8,7 +8,7 @@
 
 <div class="container detailpizza text-center mt-4 mb-4">
 
-    <form asp-controller="Photo" asp-action="Update" asp-route-id="@Model.Photo?.Id" method="post" class="text-center">
+    <form asp-controller="Photo" asp-action="Update" asp-route-id="@Model.Photo?.Id" method="post" enctype="multipart/form-data" class="text-center">
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Photo.Id" />
         <div class="mt-4 mb-4 w-50">
@@ -36,11 +36,20 @@
 
 
 
-        <div class="mt-4 mb-4 w-50">
-            <strong>PIZZA'S URL:</strong>
-            <input type="text" class="form-control" asp-for="Photo.Image">
-            <span asp-validation-for="Photo.Image" class="text-white"></span>
-        </div>
+    
+
+
+         <div class="mb-3">
+                    <strong>Immagine:</strong>
+                    <input asp-for="Photo.ImageUrl" class="d-block w-100" />
+                    <span asp-validation-for="Photo.ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <img src="@Model.Photo.ImageSrc" height="200">
+                    <label asp-for="ImageFormFile">Image file</label>
+                    <input type="file" asp-for="ImageFormFile" />
+                    <span asp-validation-for="ImageFormFile" class="text-error"></span>
+                </div>
 
    
 
@@ -51,3 +60,10 @@
 
 
 </div>
+
+@* 
+                    <div class="mt-4 mb-4 w-50">
+            <strong>PIZZA'S URL:</strong>
+            <input type="text" class="form-control" asp-for="Photo.Image">
+            <span asp-validation-for="Photo.Image" class="text-white"></span>
+        </div *@

@@ -15,8 +15,13 @@ namespace net_il_mio_fotoalbum.Models
         [Required]
         public string? Description { get; set; }
 
-        [Required]
-        public string? Image { get; set; }
+        public string? ImageUrl { get; set; }
+
+        public byte[]? ImageFile { get; set; }
+
+        public string ImageSrc =>
+            ImageFile is null ? (ImageUrl is null ? "" : ImageUrl) : $"data:image/png;base64,{Convert.ToBase64String(ImageFile)}";
+
 
         public bool? Visible { get; set; }
 
@@ -34,8 +39,11 @@ namespace net_il_mio_fotoalbum.Models
         {
             this.Title = title;
             this.Description = description;
-            this.Image = image;
+            this.ImageUrl = image;
             this.Visible = visible;
         }
     }
 }
+
+
+

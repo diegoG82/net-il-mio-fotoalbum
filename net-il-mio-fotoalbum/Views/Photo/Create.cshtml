@@ -8,7 +8,7 @@
 
 <div class="container detailpizza text-center mt-4 mb-4">
 
-    <form asp-controller="Photo" asp-action="Create" method="post" class="text-center">
+    <form asp-controller="Photo" asp-action="Create" enctype="multipart/form-data" method="post" class="text-center">
         @Html.AntiForgeryToken()
         <div class="mt-4 mb-4 w-50">
             <strong>Photo title:</strong>
@@ -16,10 +16,19 @@
             <span asp-validation-for="Photo.Title" class="text-white"></span>
         </div>
 
-        <div class="mt-4 mb-4 w-50">
-            <strong>PHOTO URL:</strong>
-            <input type="text" class="form-control" asp-for="Photo.Image">
-            <span asp-validation-for="Photo.Image" class="text-white"></span>
+        
+
+
+        <div class="mb-3">
+            <strong>URL Immagine:</strong>
+            <input type="text" class="form-control" asp-for="Photo.ImageUrl">
+            <span asp-validation-for="Photo.ImageUrl" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImageFormFile">Image file</label>
+            <input type="file" asp-for="ImageFormFile" />
+            <span asp-validation-for="ImageFormFile" class="text-error"></span>
         </div>
 
 
@@ -54,3 +63,9 @@
    
 
 </div>
+
+@* <div class="mt-4 mb-4 w-50">
+    <strong>PHOTO URL:</strong>
+    <input type="text" class="form-control" asp-for="Photo.Image">
+    <span asp-validation-for="Photo.ImageUrl" class="text-white"></span>
+</div> *@

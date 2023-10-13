@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿﻿﻿@{
     Layout = "_CustomLayout";
 }
 
@@ -7,23 +7,62 @@
 <div class="container">
 
 
-    <div class="row">
+   <div class="row">
         <div class="col-12">
-            <h1 class="title text-center">PHOTO API VIEW PAGE</h1>
+
+            <h1 class="title text-center mb-4 mt-4">DiegoG82 Photo Album</h1>
+
+            <div class="container jumbotron mt-4 mb-4 p-0">
+
+         
+
+            </div>
+
             <div>
                 <input id="js_search_box" type="text" class="form-control my-3" placeholder="Searching photos...">
             </div>
         </div>
     </div>
 
+    
 
-    <div id="loading-spinner" class="row">
-        <div class="col-12">
-            <div class="spinner-border" role="status">
+
+    <div id="loading-spinner" class="row ">
+
+            <div class="col-12 d-flex justify-content-center">
+
+             <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+             </div>
+
+            <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
-            <span>SEARCHING PHOTOS</span>
-        </div>
+
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+            <div class="spinner-border text-danger" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+            <div class="spinner-border text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+             <div class="spinner-border text-info" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+
+          </div>
+
+        
     </div>
+
+
+
 
 
     <div id="row-no-photos" class="row d-none">
@@ -37,7 +76,7 @@
 
 </div>
 
-<div class=" container mt-4">
+<div class=" container contact mt-4 mb-4">
 
     <h2>CONTACT US:</h2>
 
@@ -50,11 +89,11 @@
             <label for="message">Message</label>
             <textarea class="form-control" id="message" name="message"></textarea>
         </div>
-        <button type="button" class="btn btn-primary mt-4 mb-4" onclick="sendMessage()">SEND</button>
+        <button type="button" class="btn btn-success mt-4 mb-4" onclick="sendMessage()">Send Message</button>
     </form>
 
 </div>
-   
+
 
 
 
@@ -73,7 +112,7 @@
         }
 
 
-        
+
 
         function loadPhotos(searchParam) {
             axios.get('/api/PhotosApi/GetPhotosByTitle', {
@@ -103,25 +142,25 @@
 
                         listOfPhotosElement.innerHTML +=
                             `
-                                    <div class="col-12 col-md-4 p-2" id="${photo.id}">
+                                            <div class="col-12 col-md-4 p-2" id="${photo.id}">
 
-                                        <div class="card photocard text-center ">
+                                                <div class="card photocard text-center ">
 
-                                            <img src="${photo.imageSrc}" class="card-img-top" alt="Immagine ${photo.id}">
-                                            <div id="card_` + photo.id + `" class="card-body">
-                                               <h5 class="card-title">${photo.title}</h5>
-                                               <p class="card-text">${photo.description}</p>
-                                               <p class="card-text">
-                                                 ${photo.categories.map(category => category.name).join(", ")}
-                                               </p>
+                                                    <img src="${photo.imageSrc}" class="card-img-top" alt="Immagine ${photo.id}">
+                                                    <div id="card_` + photo.id + `" class="card-body">
+                                                       <h5 class="card-title text-uppercase mt-4 mb-4">${photo.title}</h5>
+                                                       <p class="card-text">${photo.description}</p>
+                                                       <p class="card-text">
+                                                         ${photo.categories.map(category => category.name).join(", ")}
+                                                       </p>
+
+                                                    </div>
+                                                </div>
 
                                             </div>
-                                        </div>
+                                            `;
 
-                                    </div>
-                                    `;
-
-                 });
+                    });
                 }
 
             })
@@ -141,7 +180,7 @@
 
             const jsonData = {
                 email: email,
-               text: message,
+                text: message,
             };
 
             axios.post(apiUrl, jsonData)
@@ -159,6 +198,6 @@
         }
 
 
-</script>
+    </script>
 
 }

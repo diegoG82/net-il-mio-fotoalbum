@@ -1,20 +1,25 @@
 ﻿
 <header>
 
-    <nav class="navbar navbar-expand-lg mb-4 navbar-light bg-light ">
-       
-        <a class="navbar-brand" href="#">My Photo Album</a>
-         
-   
+    <nav class="navbar navbar-expand-lg mb-4  navbar-dark bg-dark ">
 
 
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" asp-controller="Photo" asp-action="Index">Admin Photo Page</a>
-                <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">API View</a>
-                <partial name="_LoginPartial" />
+       <div class="container">
+            <a class="navbar-brand" href="https://github.com/diegoG82">DiegoG82</a>
+
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">API View</a>
+                    <a class="nav-item nav-link" asp-controller="Photo" asp-action="Index">Admin Photo Page</a>
+               
+                    <partial name="_LoginPartial" />
+                </div>
+
             </div>
-        </div>
+       </div>
+       
 
     </nav>
 

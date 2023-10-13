@@ -4,13 +4,13 @@
 
 @model PhotoFormModel
 
-<h1 class="title mt-4 w-50 text-center">CREATE NEW PIZZA</h1>
+<h1 class="text-center">Create New Photo</h1>
 
-<div class="container detailpizza text-center mt-4 mb-4">
+<div class="container photoform mt-4 mb-4 w-50">
 
     <form asp-controller="Photo" asp-action="Create" enctype="multipart/form-data" method="post" class="text-center">
         @Html.AntiForgeryToken()
-        <div class="mt-4 mb-4 w-50">
+        <div class="mt-4 mb-4">
             <strong>Photo title:</strong>
             <input type="text" class="form-control" asp-for="Photo.Title">
             <span asp-validation-for="Photo.Title" class="text-white"></span>
@@ -19,20 +19,20 @@
         
 
 
-        <div class="mb-3">
+        <div class="mt-4 mb-4">
             <strong>URL Immagine:</strong>
             <input type="text" class="form-control" asp-for="Photo.ImageUrl">
             <span asp-validation-for="Photo.ImageUrl" class="text-danger"></span>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="ImageFormFile">Image file</label>
+        <div class="mt-4 mb-4">
+            <label asp-for="ImageFormFile">Choose: </label>
             <input type="file" asp-for="ImageFormFile" />
             <span asp-validation-for="ImageFormFile" class="text-error"></span>
         </div>
 
 
-        <div class="mt-4 mb-4 w-50 ">
+        <div class="mt-4 mb-4">
             <strong>PHOTO DESCRIPTION:</strong>
             <input type="text" class="form-control" asp-for="Photo.Description">
             <span asp-validation-for="Photo.Description" class="text-white"></span>
@@ -40,7 +40,7 @@
 
      
 
-        <div class="mt-4 mb-4 w-50">
+        <div class="mt-4 mb-4">
             <strong>CATEGORIES:</strong>
             <select asp-for="SelectedCategoriesId"
                     multiple="multiple"
@@ -51,21 +51,9 @@
             </select>
         </div>
 
-
-      
-
-
-      
-
-
-        <button type="submit" class="btn btn-danger mt-4 mb-2">GOGOGO!</button>
+    <button type="submit" class="btn btn-success mt-4 mb-4">Update</button>
     </form>
    
 
 </div>
 
-@* <div class="mt-4 mb-4 w-50">
-    <strong>PHOTO URL:</strong>
-    <input type="text" class="form-control" asp-for="Photo.Image">
-    <span asp-validation-for="Photo.ImageUrl" class="text-white"></span>
-</div> *@

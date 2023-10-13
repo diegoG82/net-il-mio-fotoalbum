@@ -8,6 +8,7 @@ using net_il_mio_fotoalbum.Models;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
+    [Authorize(Roles = "ADMIN, USER")]
     public class PhotoController : Controller
     {
 

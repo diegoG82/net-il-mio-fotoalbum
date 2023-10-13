@@ -2,8 +2,6 @@
     Layout = "_CustomLayout";
 }
 
-
-
 <div class="container">
 
 
@@ -12,14 +10,14 @@
 
             <h1 class="title text-center mb-4 mt-4">DiegoG82 Photo Album</h1>
 
-            <div class="container jumbotron mt-4 mb-4 p-0">
+            <div class="container jumbotron shadowborder rounded mt-4 mb-4 p-0">
 
          
 
             </div>
 
             <div>
-                <input id="js_search_box" type="text" class="form-control my-3" placeholder="Searching photos...">
+                <input id="js_search_box" type="text" class="form-control mb-4 mt-4 shadowborder border border-dark" placeholder="Searching photos...">
             </div>
         </div>
     </div>
@@ -31,29 +29,12 @@
 
             <div class="col-12 d-flex justify-content-center">
 
-             <div class="spinner-border text-primary" role="status">
-                  <span class="sr-only">Loading...</span>
-             </div>
-
-            <div class="spinner-border text-secondary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+          
 
             <div class="spinner-border text-success" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
 
-            <div class="spinner-border text-danger" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-
-            <div class="spinner-border text-warning" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-
-             <div class="spinner-border text-info" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
 
 
           </div>
@@ -76,18 +57,18 @@
 
 </div>
 
-<div class=" container contact mt-4 mb-4">
+<div class=" container border border-dark shadowborder rounded mt-4 mb-4 p-4">
 
-    <h2>CONTACT US:</h2>
+    <h5 class="titlecard">Contact us:</h5>
 
     <form id="messageForm">
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control border border-dark" id="email" name="email">
         </div>
         <div class="form-group">
             <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message"></textarea>
+            <textarea class="form-control border border-dark" id="message" name="message"></textarea>
         </div>
         <button type="button" class="btn btn-success mt-4 mb-4" onclick="sendMessage()">Send Message</button>
     </form>
@@ -144,11 +125,11 @@
                             `
                                             <div class="col-12 col-md-4 p-2" id="${photo.id}">
 
-                                                <div class="card photocard text-center ">
+                                                        <div class="card photocard shadowborder border border-dark text-center ">
 
                                                     <img src="${photo.imageSrc}" class="card-img-top" alt="Immagine ${photo.id}">
                                                     <div id="card_` + photo.id + `" class="card-body">
-                                                       <h5 class="card-title text-uppercase mt-4 mb-4">${photo.title}</h5>
+                                                       <h5 class="card-title text-uppercase titlecard mt-4 mb-4">${photo.title}</h5>
                                                        <p class="card-text">${photo.description}</p>
                                                        <p class="card-text">
                                                          ${photo.categories.map(category => category.name).join(", ")}

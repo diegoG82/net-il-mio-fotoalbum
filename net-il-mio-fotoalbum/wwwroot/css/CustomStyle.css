@@ -12,23 +12,35 @@ background-color: #D8DBE2;
     -webkit-background-clip: text;
 }
 
-.nav-link{
-    color: forestgreen;
-}
-.navbar-brand{
-    color: gold;
-}
-
-td img{
-
-    width:200px;
+.titlecard {
+    font-size: 30px;
+    font-weight: 700;
+    background-image: linear-gradient(to left,#369F71, #06331F);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
-#js_search_box {
-    border: 1px solid black;
+.shadowborder {
     box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
+}
+
+.gold{
+    color: gold;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: forestgreen
+}
+
+td img{
+    width:200px;
 }
 
 .jumbotron {
@@ -36,20 +48,11 @@ td img{
     background-image: url(../img/jumbotron.jpeg);
     background-size: cover;
     background-position: center bottom;
-    box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-}
-
-
+   }
 
 .photocard {
     aspect-ratio: 2/3;
-    border: 1px solid black;
-    box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-}
+  }
 
 .photocard img{
 height:400px;
@@ -57,28 +60,8 @@ position:center;
 
 }
 
-.photodetail {
-  
-}
-
-
-
 .singleimage img {
     width: 80%;
-}
-
-.contact {
-    border: 1px solid black;
-    box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.75);
-}
-#email {
-    border: 2px solid black;
-}
-
-#message {
-border: 2px solid black;
 }
 
 .github{
@@ -87,20 +70,5 @@ border: 2px solid black;
 }
 
 
-
-
-footer{
-    color: forestgreen;
-  
-}
-
-.navbar{
-    color: forestgreen;
-}
-
-
-element.style {
-    color: green;
-}
 
 

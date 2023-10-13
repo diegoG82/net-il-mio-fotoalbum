@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore.Query;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace net_il_mio_fotoalbum.Models
 {
@@ -28,13 +26,13 @@ namespace net_il_mio_fotoalbum.Models
 
         //Many to many relation with categories
         public List<Category>? categories { get; set; }
-     
+
 
         //Empty construct
         public Photo() { }
 
 
-        Photo (string title, string description, string image, bool visible)
+        Photo(string title, string description, string image, bool visible)
 
         {
             this.Title = title;
@@ -42,6 +40,8 @@ namespace net_il_mio_fotoalbum.Models
             this.ImageUrl = image;
             this.Visible = visible;
         }
+
+
     }
 }
 

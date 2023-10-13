@@ -27,6 +27,21 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
 
+        //Filtro
+        public IActionResult SearchByTitle(string titleSearch)
+        {
+            List<Photo> photos;
+
+            if (!string.IsNullOrEmpty(titleSearch))
+            {
+                photos= _myDatabase.Photos.Where(photo => photo.Title.Contains(titleSearch)).Include(photo => photo.categories).ToList();
+            }
+            else
+            {
+                photos = _myDatabase.Photos.Include(photo => photo.categories).ToList();
+            }
+            return View("Index", photos);
+        }
 
 
 
